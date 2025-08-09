@@ -2,9 +2,7 @@
   "name": "ldadigitalforge",
   "version": "1.0.0",
   "private": true,
-  "engines": {
-    "node": ">=18.17.0"
-  },
+  "engines": { "node": ">=18.17.0" },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -23,6 +21,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.30",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.10",
