@@ -1,13 +1,17 @@
-// pages/_app.tsx
-import type { AppProps } from "next/app";
 import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import Head from "next/head";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="min-h-screen">
+    <>
+      <Head>
+        <title>LDA Digital Forge</title>
+        <meta name="description" content="LDA Digital Forge – AI-powered business chatbot and client dashboard." />
+      </Head>
       <header className="border-b bg-white">
         <div className="container py-4 flex items-center justify-between">
-          <div className="font-bold text-xl">{/* Add Logo/Name */}</div>
+          <div className="font-bold text-xl">LDA Digital Forge</div>
           <nav className="space-x-4 text-sm">
             <a href="/" className="hover:underline">Home</a>
             <a href="/signup" className="hover:underline">Sign Up</a>
@@ -19,7 +23,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <main className="container py-8">
         <Component {...pageProps} />
       </main>
-      <footer className="container py-10 text-sm text-gray-500">© 2025 • Add your business name</footer>
-    </div>
+    </>
   );
 }
