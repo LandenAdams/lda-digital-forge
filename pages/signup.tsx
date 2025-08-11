@@ -29,10 +29,19 @@ export default function Signup() {
     setLoading(true);
     try {
       const supabase = getSupabase();
-      const { error } = await supabase.auth.signUp({ email, password });
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          // sends Supabase email verification/magic link back to your site
+          emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
+        },
+      });
       if (error) return setMsg(error.message);
-      // After sign-up, send user to Stripe checkout
-      router.push("/subscribe");
+
+      setMsg("Check your email for a verification link. After verifying, you'll be redirected.");
+      // Optional: route to a “check your email” page
+      // router.push("/check-email");
     } catch (err: any) {
       setMsg(err.message || "Signup failed.");
     } finally {
@@ -70,6 +79,9 @@ export default function Signup() {
         <a className="underline" href="/login">
           Log in
         </a>
+      </p>
+      <p className="text-xs text-gray-500">
+        After you sign up, please verify your email. You’ll be redirected back to finish sign-in.
       </p>
     </form>
   );
