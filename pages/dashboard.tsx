@@ -1,27 +1,48 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { getSupabase } from "../lib/supabaseClient";
 import Chatbot from "../components/Chatbot";
 
 export default function Dashboard() {
+  const router = useRouter();
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [name, setName] = useState("");
   const [logo, setLogo] = useState("");
   const [faqs, setFaqs] = useState("Hours: 9–5\nLocation: Main St\nPhone: 555-1234");
   const [specials, setSpecials] = useState("10% off this week!");
   const [msg, setMsg] = useState<string | null>(null);
+  const [checking, setChecking] = useState(true);
 
   useEffect(() => {
-    // Only runs in the browser; safe to create Supabase here
-    try {
-      const supabase = getSupabase();
-      supabase.auth.getUser().then(({ data }) => {
-        setUserEmail(data.user?.email ?? null);
-      });
-    } catch (e) {
-      // If env vars are missing in production, show a helpful message
-      console.error(e);
-      setMsg("Supabase not configured. Check Vercel env vars + redeploy.");
+    async function run() {
+      try {
+        const supabase = getSupabase();
+        const { data } = await supabase.auth.getUser();
+        const email = data.user?.email ?? null;
+        setUserEmail(email);
+
+        if (!email) {
+          router.replace("/login");
+          return;
+        }
+
+        // Require active Stripe subscription
+        const r = await fetch(`/api/check-subscription?email=${encodeURIComponent(email)}`);
+        const j = await r.json();
+        if (!j.active) {
+          setMsg("A paid plan is required. Redirecting to checkout…");
+          setTimeout(() => router.replace("/subscribe"), 1200);
+          return;
+        }
+      } catch (e: any) {
+        console.error(e);
+        setMsg("Could not verify subscription. Please try again.");
+      } finally {
+        setChecking(false);
+      }
     }
+    run();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function save() {
@@ -38,13 +59,14 @@ export default function Dashboard() {
     }
   }
 
+  if (checking) {
+    return <div className="card max-w-md mx-auto">Checking subscription…</div>;
+  }
+
   if (!userEmail) {
     return (
       <div className="card max-w-md mx-auto">
         <h2 className="text-xl font-bold mb-2">Please log in</h2>
-        <p className="text-gray-600">
-          You need to be signed in to access your dashboard.
-        </p>
         <a className="btn mt-4 inline-block" href="/login">Go to Login</a>
       </div>
     );
