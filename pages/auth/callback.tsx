@@ -15,7 +15,7 @@ export default function AuthCallback() {
       try {
         const supabase = getSupabase();
 
-        // If OAuth uses ?code= in query, exchange for a session.
+        // 1) OAuth PKCE: exchange ?code= for a session
         const url = new URL(window.location.href);
         const code = url.searchParams.get("code");
         if (code) {
@@ -26,8 +26,7 @@ export default function AuthCallback() {
           return;
         }
 
-        // Magic link / email verification tokens are in the URL hash;
-        // getSession() will pick them up and set a session if valid.
+        // 2) Magic link / email verification: tokens live in the URL hash
         const { data, error } = await supabase.auth.getSession();
         if (error) throw error;
 
