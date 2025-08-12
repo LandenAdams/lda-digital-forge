@@ -33,14 +33,14 @@ export default function Signup() {
         email,
         password,
         options: {
-          // sends Supabase email verification/magic link back to your site
+          // ✅ Send verification/magic link to your live domain
           emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
         },
       });
       if (error) return setMsg(error.message);
 
-      setMsg("Check your email for a verification link. After verifying, you'll be redirected.");
-      // Optional: route to a “check your email” page
+      setMsg("Check your email for a verification link. After verifying, you'll be redirected here to finish sign-in.");
+      // Optional nicer UX:
       // router.push("/check-email");
     } catch (err: any) {
       setMsg(err.message || "Signup failed.");
@@ -76,9 +76,7 @@ export default function Signup() {
       </button>
       <p className="text-sm text-gray-600">
         Already have an account?{" "}
-        <a className="underline" href="/login">
-          Log in
-        </a>
+        <a className="underline" href="/login">Log in</a>
       </p>
       <p className="text-xs text-gray-500">
         After you sign up, please verify your email. You’ll be redirected back to finish sign-in.
