@@ -4,31 +4,64 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="space-y-8">
-      <Head><title>LDA Digital Forge</title></Head>
+      <Head>
+        <title>LDA Digital Forge</title>
+        <meta
+          name="description"
+          content="LDA Digital Forge: AI-powered business websites with built-in chatbot, email verification, and subscription management."
+        />
+      </Head>
 
+      {/* Hero Section */}
       <section className="text-center space-y-3">
-        <h1 className="text-3xl md:text-4xl font-bold">AI-Powered Business Website + Chatbot</h1>
+        <h1 className="text-3xl md:text-4xl font-bold">
+          LDA Digital Forge — AI-Powered Business Website + Chatbot
+        </h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Sign up, verify your email, subscribe, and customize FAQs & specials. Your chatbot answers customer questions instantly.
+          Launch your own professional business website with built-in AI chatbot support.
+          Sign up, verify your email, subscribe to a plan, and customize your FAQs & specials.
+          Our chatbot answers customer questions instantly, 24/7.
         </p>
         <div className="flex gap-3 justify-center">
-          <Link className="btn" href="/signup">Get Started</Link>
-          <Link className="btn" href="/subscribe">Subscribe</Link>
+          <Link className="btn" href="/signup">
+            Get Started
+          </Link>
+          <Link className="btn" href="/subscribe">
+            Subscribe
+          </Link>
         </div>
       </section>
 
+      {/* Features Section */}
       <section className="grid md:grid-cols-3 gap-6">
-        <div className="card"><h3 className="font-semibold mb-2">Simple Setup</h3><p>Login with Supabase and customize your profile.</p></div>
-        <div className="card"><h3 className="font-semibold mb-2">Take Payments</h3><p>Stripe Checkout handles billing securely.</p></div>
-        <div className="card"><h3 className="font-semibold mb-2">Answer FAQs</h3><p>Use AI to answer common customer questions.</p></div>
+        <div className="card">
+          <h3 className="font-semibold mb-2">Simple Setup</h3>
+          <p>Sign up with secure Supabase authentication and customize your profile in minutes.</p>
+        </div>
+        <div className="card">
+          <h3 className="font-semibold mb-2">Take Payments</h3>
+          <p>Stripe Checkout handles all billing securely — you stay focused on your business.</p>
+        </div>
+        <div className="card">
+          <h3 className="font-semibold mb-2">Answer FAQs</h3>
+          <p>AI-powered chatbot responds instantly to common customer questions, reducing workload.</p>
+        </div>
       </section>
 
+      {/* Notes Section */}
       <section className="card">
-        <h3 className="font-semibold mb-2">Account notes</h3>
+        <h3 className="font-semibold mb-2">Important Account Notes</h3>
         <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
-          <li>After sign up, please check your email and click the verification link.</li>
-          <li>You’ll be redirected back to finish sign-in and reach your dashboard.</li>
-          <li>A paid plan is required to access dashboard features.</li>
+          <li>
+            After sign up, <strong>check your email</strong> for a verification link. 
+            This is required before you can log in.
+          </li>
+          <li>
+            The link will bring you back to our secure site to finish sign-in and reach your dashboard.
+          </li>
+          <li>
+            You must have an <strong>active paid subscription</strong> to unlock all dashboard features.
+          </li>
         </ul>
       </section>
     </div>
