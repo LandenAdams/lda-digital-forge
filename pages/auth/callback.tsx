@@ -4,7 +4,8 @@ import { getSupabase } from "../../lib/supabaseClient";
 
 /**
  * Handles Supabase email verification / magic links and OAuth code exchange.
- * After a valid session is present, sends user to /dashboard.
+ * After a valid session is present, we send users to /subscribe first (paywall),
+ * then /dashboard is accessible once paid.
  */
 export default function AuthCallback() {
   const router = useRouter();
@@ -22,17 +23,18 @@ export default function AuthCallback() {
           const { error } = await supabase.auth.exchangeCodeForSession(code);
           if (error) throw error;
           setMsg("Signed in! Redirecting…");
-          router.replace("/dashboard");
+          router.replace("/subscribe");
           return;
         }
 
-        // 2) Magic link / email verification: tokens live in the URL hash
+        // 2) Magic link / email verification tokens are in the URL hash;
+        // getSession() will pick them up and set a session if valid.
         const { data, error } = await supabase.auth.getSession();
         if (error) throw error;
 
         if (data.session) {
           setMsg("Email verified! Redirecting…");
-          router.replace("/dashboard");
+          router.replace("/subscribe");
         } else {
           setMsg("Session not found. Please log in.");
           router.replace("/login");
