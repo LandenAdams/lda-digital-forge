@@ -48,3 +48,4 @@ a {
 
 .btn-accent:hover {
   background: hsl(var(--accent-strong));
+}
