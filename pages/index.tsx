@@ -1,4 +1,3 @@
-// pages/index.tsx
 import Head from "next/head";
 import Link from "next/link";
 
@@ -14,9 +13,9 @@ export default function Home() {
       </Head>
 
       {/* Hero */}
-      <section className="hero p-10 md:p-14 text-center">
-        <div className="max-w-3xl mx-auto space-y-4">
-          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight">
+      <section className="hero p-8 md:p-12 text-center">
+        <div className="mx-auto space-y-4 max-w-2xl md:max-w-3xl">
+          <h1 className="text-3xl md:text-4xl font-extrabold leading-tight">
             Launch your AI-powered business website in minutes
           </h1>
           <p className="text-gray-600">
@@ -32,7 +31,7 @@ export default function Home() {
       </section>
 
       {/* Features */}
-      <section className="grid md:grid-cols-3 gap-6">
+      <section className="grid md:grid-cols-3 gap-5">
         <div className="card">
           <h3 className="font-semibold mb-2">Website + Branding</h3>
           <p className="text-gray-600">
