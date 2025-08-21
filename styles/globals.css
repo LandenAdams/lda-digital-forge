@@ -2,61 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design tokens */
+/* Brand Tokens */
 :root {
-  --brand: 60 90% 54%;        /* primary hue in HSL (Tailwind arbitrary color uses hsl()) */
-  --brand-ink: 222 47% 11%;   /* slate-900-ish for text */
-  --panel: 0 0% 100%;
-  --muted: 220 14% 96%;
-  --ring: 210 100% 50%;
-}
-
-html, body, #__next {
-  height: 100%;
+  --brand: 243 75% 59%;        /* Indigo 600 */
+  --brand-strong: 243 75% 52%; /* Indigo 700 */
+  --accent: 43 96% 56%;        /* Amber 500 */
+  --accent-strong: 43 96% 46%; /* Amber 600 */
 }
 
 body {
-  @apply bg-[hsl(var(--muted))] text-[hsl(var(--brand-ink))] antialiased;
+  @apply bg-gray-50 text-gray-900 antialiased;
 }
 
-/* Layout helpers */
-.container {
-  @apply max-w-6xl mx-auto px-4;
+a {
+  @apply text-indigo-600 hover:text-indigo-800 transition;
 }
 
-/* Reusable UI primitives */
 .card {
-  @apply rounded-2xl bg-[hsl(var(--panel))] shadow-sm ring-1 ring-black/5 p-6;
-}
-
-.btn {
-  @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium
-         ring-1 ring-black/5 shadow-sm transition
-         bg-[hsl(var(--brand))] text-white hover:opacity-95 active:opacity-90;
-}
-
-.btn-secondary {
-  @apply bg-white text-[hsl(var(--brand-ink))] ring-1 ring-black/10 hover:bg-gray-50;
+  @apply bg-white rounded-2xl shadow p-6 border border-gray-200;
 }
 
 .input {
-  @apply w-full rounded-xl border border-black/10 bg-white px-3 py-2 text-sm
-         shadow-inner outline-none focus:ring-2 focus:ring-[hsl(var(--ring))];
+  @apply w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition;
 }
 
-/* Fancy hero background */
-.hero {
-  background:
-    radial-gradient(1200px 400px at 50% -10%, hsl(var(--brand)/0.15), transparent 60%),
-    linear-gradient(180deg, white 0%, hsl(var(--muted)) 100%);
+.btn {
+  background: hsl(var(--brand));
+  color: white;
+  @apply px-4 py-2 rounded-lg font-medium shadow hover:shadow-md transition;
 }
 
-/* Subtle card hover */
-.card:hover {
-  @apply shadow-md ring-black/10;
+.btn:hover {
+  background: hsl(var(--brand-strong));
 }
 
-/* Footer */
-.footer {
-  @apply text-sm text-gray-500;
+.btn-secondary {
+  @apply bg-white border border-gray-300 text-gray-800 px-4 py-2 rounded-lg font-medium shadow-sm hover:bg-gray-50 transition;
 }
+
+.btn-accent {
+  background: hsl(var(--accent));
+  color: black;
+  @apply px-4 py-2 rounded-lg font-medium shadow hover:shadow-md transition;
+}
+
+.btn-accent:hover {
+  background: hsl(var(--accent-strong));
