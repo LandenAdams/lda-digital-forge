@@ -9,7 +9,6 @@ export default function Login() {
   const [msg, setMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // If already logged in, send to dashboard
   useEffect(() => {
     try {
       const supabase = getSupabase();
@@ -17,7 +16,6 @@ export default function Login() {
         if (data.user) router.replace("/dashboard");
       });
     } catch (e) {
-      // env vars missing at runtime: show a soft message instead of crashing
       console.error(e);
       setMsg("Supabase not configured. Check Vercel env vars + redeploy.");
     }
@@ -67,9 +65,7 @@ export default function Login() {
       </button>
       <p className="text-sm text-gray-600">
         Don’t have an account?{" "}
-        <a className="underline" href="/signup">
-          Create one
-        </a>
+        <a className="underline" href="/signup">Create one</a>
       </p>
     </form>
   );
