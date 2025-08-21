@@ -1,9 +1,10 @@
+// pages/index.tsx
 import Head from "next/head";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="container max-w-5xl mx-auto px-4 space-y-10">
+    <div className="space-y-10">
       <Head>
         <title>LDA Digital Forge</title>
         <meta
@@ -20,8 +21,7 @@ export default function Home() {
           </h1>
           <p className="text-gray-600">
             LDA Digital Forge gives small businesses a modern website, an AI FAQ chatbot,
-            secure accounts with email verification, and paid subscriptions via Stripe —
-            all in one place.
+            secure accounts with email verification, and paid subscriptions via Stripe — all in one place.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link className="btn" href="/signup">Get Started</Link>
@@ -31,7 +31,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Value Props */}
+      {/* Features */}
       <section className="grid md:grid-cols-3 gap-6">
         <div className="card">
           <h3 className="font-semibold mb-2">Website + Branding</h3>
@@ -53,18 +53,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How it works */}
-      <section className="card">
-        <h3 className="font-semibold mb-3">How it works</h3>
-        <ol className="list-decimal pl-5 text-gray-700 space-y-1 text-sm">
-          <li>Create an account and verify your email.</li>
-          <li>Subscribe securely via Stripe.</li>
-          <li>Customize your business name, logo, FAQs, and specials in the dashboard.</li>
-          <li>Your AI chatbot answers customer questions on your site instantly.</li>
-        </ol>
-      </section>
-
-      {/* Account notes */}
+      {/* Notes */}
       <section className="card">
         <h3 className="font-semibold mb-2">Account notes</h3>
         <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
