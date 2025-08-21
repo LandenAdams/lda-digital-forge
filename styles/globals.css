@@ -2,9 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #__next { height: 100%; }
-body { @apply bg-gray-50 text-gray-900; }
-.container { @apply max-w-5xl mx-auto px-4; }
-.btn { @apply inline-flex items-center justify-center rounded-xl px-4 py-2 font-medium shadow-sm bg-black text-white hover:bg-gray-800; }
-.card { @apply bg-white rounded-2xl shadow p-6; }
-.input { @apply w-full rounded-xl border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black; }
+/* Design tokens */
+:root {
+  --brand: 60 90% 54%;        /* primary hue in HSL (Tailwind arbitrary color uses hsl()) */
+  --brand-ink: 222 47% 11%;   /* slate-900-ish for text */
+  --panel: 0 0% 100%;
+  --muted: 220 14% 96%;
+  --ring: 210 100% 50%;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  @apply bg-[hsl(var(--muted))] text-[hsl(var(--brand-ink))] antialiased;
+}
+
+/* Layout helpers */
+.container {
+  @apply max-w-6xl mx-auto px-4;
+}
+
+/* Reusable UI primitives */
+.card {
+  @apply rounded-2xl bg-[hsl(var(--panel))] shadow-sm ring-1 ring-black/5 p-6;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium
+         ring-1 ring-black/5 shadow-sm transition
+         bg-[hsl(var(--brand))] text-white hover:opacity-95 active:opacity-90;
+}
+
+.btn-secondary {
+  @apply bg-white text-[hsl(var(--brand-ink))] ring-1 ring-black/10 hover:bg-gray-50;
+}
+
+.input {
+  @apply w-full rounded-xl border border-black/10 bg-white px-3 py-2 text-sm
+         shadow-inner outline-none focus:ring-2 focus:ring-[hsl(var(--ring))];
+}
+
+/* Fancy hero background */
+.hero {
+  background:
+    radial-gradient(1200px 400px at 50% -10%, hsl(var(--brand)/0.15), transparent 60%),
+    linear-gradient(180deg, white 0%, hsl(var(--muted)) 100%);
+}
+
+/* Subtle card hover */
+.card:hover {
+  @apply shadow-md ring-black/10;
+}
+
+/* Footer */
+.footer {
+  @apply text-sm text-gray-500;
+}
