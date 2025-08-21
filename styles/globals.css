@@ -2,50 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Brand Tokens */
+/* ===== Design Tokens ===== */
 :root {
-  --brand: 243 75% 59%;        /* Indigo 600 */
-  --brand-strong: 243 75% 52%; /* Indigo 700 */
-  --accent: 43 96% 56%;        /* Amber 500 */
-  --accent-strong: 43 96% 46%; /* Amber 600 */
+  --brand: 243 75% 59%;        /* indigo-600 */
+  --brand-strong: 243 75% 52%; /* indigo-700 */
+  --accent: 43 96% 56%;        /* amber-500 */
+  --accent-strong: 43 96% 46%; /* amber-600 */
+  --ink: 222 47% 11%;          /* slate-900 */
+  --muted: 210 20% 98%;        /* gray-50 */
 }
 
-body {
-  @apply bg-gray-50 text-gray-900 antialiased;
-}
+html, body, #__next { height: 100%; }
+body { margin: 0; @apply antialiased; background: hsl(var(--muted)); color: hsl(var(--ink)); }
 
-a {
-  @apply text-indigo-600 hover:text-indigo-800 transition;
-}
+/* ===== Centering Shell (site-wide wrapper) ===== */
+/* Narrower by default; slightly wider on md+ screens */
+.shell { @apply mx-auto px-4 max-w-3xl md:max-w-4xl; }
 
-.card {
-  @apply bg-white rounded-2xl shadow p-6 border border-gray-200;
-}
+/* ===== Reusable UI ===== */
+.card { @apply rounded-2xl bg-white border border-gray-200 shadow-sm p-6 transition; }
+.card:hover { @apply shadow-md; }
 
 .input {
-  @apply w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition;
+  @apply w-full rounded-xl px-3 py-2 text-sm bg-white border border-gray-300
+         shadow-inner focus:outline-none focus:ring-2;
+  --tw-ring-color: hsl(var(--brand));
 }
 
 .btn {
-  background: hsl(var(--brand));
-  color: white;
-  @apply px-4 py-2 rounded-lg font-medium shadow hover:shadow-md transition;
+  background: hsl(var(--brand)); color: white;
+  @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold
+         shadow-sm transition-colors focus:outline-none focus:ring-2;
+  --tw-ring-color: hsl(var(--brand));
 }
-
-.btn:hover {
-  background: hsl(var(--brand-strong));
-}
+.btn:hover { background: hsl(var(--brand-strong)); }
+.btn:active { @apply opacity-90; }
+.btn:disabled { @apply opacity-60 cursor-not-allowed; }
 
 .btn-secondary {
-  @apply bg-white border border-gray-300 text-gray-800 px-4 py-2 rounded-lg font-medium shadow-sm hover:bg-gray-50 transition;
+  @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold
+         shadow-sm transition-colors border border-gray-200 bg-white text-gray-900
+         focus:outline-none focus:ring-2;
+  --tw-ring-color: hsl(var(--brand));
 }
+.btn-secondary:hover { @apply bg-gray-50; }
 
 .btn-accent {
-  background: hsl(var(--accent));
-  color: black;
-  @apply px-4 py-2 rounded-lg font-medium shadow hover:shadow-md transition;
+  background: hsl(var(--accent)); color: black;
+  @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold
+         shadow-sm transition-colors focus:outline-none focus:ring-2;
+  --tw-ring-color: hsl(var(--accent));
+}
+.btn-accent:hover { background: hsl(var(--accent-strong)); }
+
+/* Labels */
+label { @apply text-sm font-medium text-gray-800; }
+
+/* Hero background */
+.hero{
+  background:
+    radial-gradient(1200px 400px at 50% -10%, hsl(var(--brand)/0.12), transparent 60%),
+    linear-gradient(180deg, white 0%, hsl(var(--muted)) 100%);
+  @apply rounded-3xl ring-1 ring-black/5;
 }
 
-.btn-accent:hover {
-  background: hsl(var(--accent-strong));
-}
+/* Footer */
+.footer { @apply text-sm text-gray-500; }
+
+/* Links */
+a { @apply transition-colors; }
+a:hover { @apply opacity-90; }
+
+/* Selection */
+::selection { background: hsl(var(--brand)/0.2); }
