@@ -1,4 +1,3 @@
-// pages/_app.tsx
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -31,7 +30,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </main>
 
-      <footer className="shell py-10 text-sm text-gray-500">
+      <footer className="shell py-10 footer">
         © {new Date().getFullYear()} LDA Digital Forge
       </footer>
     </>
